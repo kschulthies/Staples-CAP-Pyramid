@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Staples: Competitive Advantage Pyramid</title>
+<style>
+:root{
+  --ink:#1c1c1c; --paper:#ffffff; --line:#dcdad4; --muted:#6b6b66;
+  --stated:#B0142F; --stated-bg:#fbecec; --stated-bd:#e8b9c1;
+  --revealed:#1f5c6b; --revealed-bg:#eaf2f2; --revealed-bd:#b9d3d6;
+  --tag:#8a8378;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  box-sizing:border-box;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){--ink:#eae7e0;--paper:#141312;--line:#332f2b;--muted:#a39c8f;--stated-bg:#2a1518;--stated-bd:#5a2530;--revealed-bg:#122224;--revealed-bd:#264a4f;}
+}
+:root[data-theme="dark"]{--ink:#eae7e0;--paper:#141312;--line:#332f2b;--muted:#a39c8f;--stated-bg:#2a1518;--stated-bd:#5a2530;--revealed-bg:#122224;--revealed-bd:#264a4f;}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Georgia,'Iowan Old Style',serif;line-height:1.5}
+.wrap{max-width:840px;margin:0 auto;padding:0 20px 60px}
+header{position:sticky;top:env(safe-area-inset-top,0px);background:var(--paper);border-bottom:1px solid var(--line);z-index:10;padding:14px 20px 0}
+header .inner{max-width:840px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap}
+h1{font-size:1.3rem;margin:0 0 12px;font-weight:700;letter-spacing:.2px}
+h1 small{display:block;font-family:system-ui,sans-serif;font-size:.72rem;color:var(--muted);font-weight:500;letter-spacing:.4px;margin-top:3px}
+button.dl{font-family:system-ui,sans-serif;font-size:.78rem;border:1px solid var(--ink);background:var(--ink);color:var(--paper);padding:7px 12px;border-radius:3px;cursor:pointer;margin-bottom:12px}
+button.dl:hover{opacity:.85}
+nav{display:flex;gap:2px;overflow-x:auto;margin-top:10px}
+nav button{font-family:system-ui,sans-serif;background:none;border:none;border-bottom:2px solid transparent;color:var(--muted);padding:9px 12px 10px;font-size:.82rem;white-space:nowrap;cursor:pointer}
+nav button.on{color:var(--ink);border-bottom-color:var(--stated);font-weight:600}
+section{display:none;padding-top:26px}
+section.on{display:block}
+h2{font-size:1.15rem;margin:0 0 4px}
+.dek{font-family:system-ui,sans-serif;color:var(--muted);font-size:.86rem;margin:0 0 22px;max-width:62ch}
+.pyr{display:flex;flex-direction:column;align-items:center;gap:10px;margin-bottom:6px}
+.tier{width:100%;border:1px solid var(--line);border-radius:4px;padding:12px 16px}
+.tier h3{font-family:system-ui,sans-serif;font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 0 8px;font-weight:600}
+.tier[data-w="1"]{max-width:34%}
+.tier[data-w="2"]{max-width:56%}
+.tier[data-w="3"]{max-width:78%}
+.tier[data-w="4"]{max-width:100%}
+.item{font-size:.92rem;margin:0 0 9px;padding-left:14px;border-left:2px solid var(--line)}
+.item:last-child{margin-bottom:0}
+.kind{font-family:system-ui,sans-serif;font-size:.62rem;text-transform:uppercase;letter-spacing:.06em;color:var(--tag);display:block;margin-bottom:1px}
+.src{font-family:system-ui,sans-serif;font-size:.68rem;color:var(--muted);display:block;margin-top:2px}
+section#stated .tier{background:var(--stated-bg);border-color:var(--stated-bd)}
+section#revealed .tier{background:var(--revealed-bg);border-color:var(--revealed-bd)}
+.side-by-side{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.side-by-side .pyr{gap:8px}
+.side-by-side .tier{padding:9px 12px}
+.side-by-side .item{font-size:.82rem}
+.side-by-side h2{grid-column:1/-1;font-size:1rem;text-align:center;margin-bottom:2px}
+@media (max-width:640px){.side-by-side{grid-template-columns:1fr}.side-by-side h2{margin-top:14px}}
+.gap{border:1px solid var(--line);border-radius:5px;padding:16px 18px;margin-bottom:16px}
+.gap h3{margin:0 0 6px;font-size:1rem}
+.badge{font-family:system-ui,sans-serif;font-size:.65rem;text-transform:uppercase;letter-spacing:.05em;padding:2px 8px;border-radius:10px;margin-left:8px;vertical-align:2px}
+.badge.choice{background:var(--revealed-bg);color:var(--revealed);border:1px solid var(--revealed-bd)}
+.badge.gap{background:var(--stated-bg);color:var(--stated);border:1px solid var(--stated-bd)}
+.gap p{font-size:.9rem;margin:6px 0}
+.gap .ev{font-family:system-ui,sans-serif;font-size:.78rem;color:var(--muted);border-left:2px solid var(--line);padding-left:10px;margin:8px 0}
+.src-list{font-size:.9rem}
+.src-list h3{font-size:.95rem;margin:20px 0 6px}
+.src-list p{margin:4px 0}
+.limit{background:var(--stated-bg);border:1px solid var(--stated-bd);border-radius:5px;padding:14px 16px;margin-top:20px;font-size:.88rem}
+footer{text-align:center;font-family:system-ui,sans-serif;font-size:.72rem;color:var(--muted);margin-top:36px}
+@media print{
+  nav,button.dl,header{display:none!important}
+  section{display:block!important;page-break-before:always}
+  section:first-of-type{page-break-before:auto}
+  body{font-size:11pt}
+}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+<header><div class="inner">
+  <div>
+    <h1>Staples: Competitive Advantage Pyramid<small>Stated values vs. revealed priorities, FY2016 10-K &amp; Spring 2016 proxy</small></h1>
+  </div>
+  <button class="dl" id="dlBtn" onclick="doDownload()">⬇ Download as PDF</button>
+</div>
+<nav id="nav"></nav>
+</header>
+<div class="wrap">
+  <section id="stated"><h2>Stated Pyramid</h2><p class="dek">Built only from staples.com's current About page, careers.staples.com, and the "Strategy" language in the FY2016 10-K's Item 1 — what Staples says about itself.</p><div class="pyr" id="p-stated"></div></section>
+
+  <section id="revealed"><h2>Revealed Pyramid</h2><p class="dek">Built only from behavior disclosed in the FY2016 10-K (fiscal year ended Jan 28, 2017) and the Spring 2016 shareholder proxy — where money, headcount and pay actually moved.</p><div class="pyr" id="p-revealed"></div></section>
+
+  <section id="side"><div class="side-by-side">
+    <h2>Side by Side</h2>
+    <div><h2 style="text-align:left">Stated</h2><div class="pyr" id="p-stated2"></div></div>
+    <div><h2 style="text-align:left">Revealed</h2><div class="pyr" id="p-revealed2"></div></div>
+  </div></section>
+
+  <section id="gaps"><h2>Gap Analysis</h2><p class="dek">Four gaps between what Staples says and what the filings show it does — each tagged as a deliberate positioning choice or a real misalignment.</p><div id="gap-list"></div></section>
+
+  <section id="sources"><h2>Sources &amp; Limitations</h2><div class="src-list" id="src-list"></div></section>
+</div>
+<footer>Built as a research tool. Not investment advice.</footer>
+
+<script>
+const TABS=[["stated","Stated"],["revealed","Revealed"],["side","Side by Side"],["gaps","Gap Analysis"],["sources","Sources"]];
+const nav=document.getElementById("nav");
+TABS.forEach(([id,label],i)=>{
+  const b=document.createElement("button");
+  b.textContent=label; b.onclick=()=>show(id);
+  b.id="nav-"+id; if(i===0) b.className="on";
+  nav.appendChild(b);
+});
+function show(id){
+  document.querySelectorAll("section").forEach(s=>s.classList.toggle("on",s.id===id));
+  document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("on",b.id==="nav-"+id));
+}
+show("stated");
+
+// ---- Data ----
+const stated = [
+ {t:"Vision",items:[
+   {k:"Value",x:"“We help businesses succeed” — stated company vision, reasserted across the reinvention plan.",s:"10-K Item 1, Strategy"},
+ ]},
+ {t:"Resources",items:[
+   {k:"Resource",x:"A broad, expanding assortment beyond core office supplies — facilities, breakroom, furniture, promotional and technology products.",s:"10-K Item 1, Business"},
+   {k:"Resource",x:"An own-brand portfolio (Staples, Quill, Sustainable Earth) of 10,000+ products, ~29% of sales.",s:"10-K Item 1, Merchandising"},
+   {k:"Resource",x:"“Best-in-class supply chain capabilities” and 20+ fulfillment centers, next-day delivery to 98% of the U.S.",s:"staples.com/About Us"},
+ ]},
+ {t:"Capabilities",items:[
+   {k:"Capability",x:"Reaching customers through contract, online and retail channels at once — “an integrated retail and online shopping experience.”",s:"10-K Item 1, Business"},
+   {k:"Capability",x:"“Courteous, helpful and knowledgeable associates” focused on solution selling across every channel.",s:"10-K Item 1, Competition"},
+   {k:"Capability",x:"A culture built on Inclusion &amp; Engagement (10 Business Resource Groups) and Supplier Diversity.",s:"staples.com/About Us"},
+ ]},
+ {t:"Activities",items:[
+   {k:"Activity",x:"Hiring across Warehouse/Supply Chain &amp; Logistics, Sales &amp; Sales Support, Merchandising, Marketing, Tech/E-commerce, and HR.",s:"careers.staples.com"},
+   {k:"Activity",x:"A 5-year plan to cut operational carbon emissions 35%, plus a public Corporate Social Responsibility report.",s:"staples.com/About Us"},
+   {k:"Activity",x:"“People are at the heart of what we do” — the careers site frames every listed job area as a collaborative growth path.",s:"careers.staples.com"},
+ ]},
+];
+
+const revealed = [
+ {t:"Vision (revealed)",items:[
+   {k:"Value",x:"The 20/20 Plan reframes “success” as profit-per-dollar-invested: narrow the map, cut costs, protect margin — not grow everywhere at once.",s:"10-K Item 1A / Note B"},
+ ]},
+ {t:"Resources",items:[
+   {k:"Resource",x:"Capital spending cut from $381M (2015) to $255M (2016), a $126M reduction, explicitly to “narrow focus on strategic priorities.”",s:"10-K MD&A, Liquidity"},
+   {k:"Resource",x:"$0 in share buybacks in 2016 — cash instead absorbed the $250M Office Depot termination fee plus $88M in dead-deal financing costs.",s:"10-K MD&A, Cash Flows"},
+   {k:"Resource",x:"Segment sales: North American Delivery $10,636M (58%) vs. North American Retail $6,662M (37%) vs. Other $949M (5%) of $18,247M total.",s:"10-K Note O, Segment Reporting"},
+ ]},
+ {t:"Capabilities",items:[
+   {k:"Capability",x:"Delivery segment earned $672M in business-unit income on $10.6B sales; Retail earned only $317M on $6.7B — Delivery is the real profit engine, not the storefront.",s:"10-K Note O, Segment Reporting"},
+   {k:"Capability",x:"Executive long-term pay is 50% Return on Net Assets, 50% Operating Income growth; annual pay is 50% EPS, 25% Gross Profit $, 25% Total Sales — pure efficiency and margin metrics.",s:"Spring 2016 Proxy, p.10"},
+   {k:"Capability",x:"Divested UK retail (Nov 2016) and a controlling stake in remaining European operations (Feb 2017) — international, once 15% of sales, is being shed, not scaled.",s:"10-K Item 1A / Item 7"},
+ ]},
+ {t:"Activities",items:[
+   {k:"Activity",x:"Closed 48 stores in 2016 (169 in 2014, 73 in 2015) with 70 more planned for 2017 under the ongoing Store Closure Plan.",s:"10-K Item 1 / Note B"},
+   {k:"Activity",x:"CEO Ron Sargent stepped down within weeks of the FTC blocking the Office Depot deal; his exit was recorded as a restructuring charge.",s:"10-K Note B, Restructuring"},
+   {k:"Activity",x:"A new $300M annualized cost-savings program (through 2018) targets product cost, promotions, own-brand mix and store fixed costs — not growth spend.",s:"10-K Note B, Restructuring"},
+ ]},
+];
+
+function tierWidth(i,total){return total-i;} // widest at base
+function renderPyr(target,data){
+  const el=document.getElementById(target); el.innerHTML="";
+  data.forEach((tier,i)=>{
+    const d=document.createElement("div"); d.className="tier"; d.dataset.w=tierWidth(i,data.length);
+    let h="<h3>"+tier.t+"</h3>";
+    tier.items.forEach(it=>{
+      h+=`<div class="item"><span class="kind">${it.k}</span>${it.x}<span class="src">${it.s}</span></div>`;
+    });
+    d.innerHTML=h; el.appendChild(d);
+  });
+}
+renderPyr("p-stated",stated); renderPyr("p-stated2",stated);
+renderPyr("p-revealed",revealed); renderPyr("p-revealed2",revealed);
+
+// ---- Gaps ----
+const gaps=[
+ {t:"“Businesses of all sizes” vs. a B2B mid-market profit engine",badge:"choice",
+  p:"The public vision names no favorite customer — every size, every channel. But Delivery (B2B contract + Quill + staples.com) produced twice the profit of Retail on less revenue advantage, and the 20/20 Plan explicitly prioritizes mid-market growth.",
+  ev:"Delivery business-unit income $672M vs. Retail $317M, on sales of $10,636M vs. $6,662M (10-K, Note O). Strategy: “accelerating mid-market growth in North America” (10-K Item 1).",
+  verdict:"Read as a deliberate, disclosed positioning choice — the shift is stated in the same filings, just not on the About page."},
+ {t:"“People are at the heart of what we do” vs. pay tied only to financial ratios",badge:"gap",
+  p:"Careers messaging leans on culture and collaboration. But every dollar of at-risk executive pay is measured by EPS, gross profit, sales, RONA and operating-income growth — no engagement, retention, or customer metric appears in the plan design.",
+  ev:"CEO 2015 target mix: 89% performance-based; annual incentive 50% EPS / 25% Gross Profit $ / 25% Total Sales; long-term 50% RONA% / 50% Operating Income $ growth (Spring 2016 Proxy, p.10).",
+  verdict:"A real misalignment — the stated culture value has no corresponding lever in how leadership is actually paid."},
+ {t:"Sustainability commitments vs. a capital budget with no visible green line item",badge:"gap",
+  p:"The current About page leads with a 5-year carbon-reduction plan and a public CSR report. The FY2016 filings show capex being cut and redirected toward “strategic priorities” — restructuring, mid-market systems, cost programs — with no comparable sustainability capital commitment disclosed.",
+  ev:"Capex fell $126M year-over-year “resulting from narrowing our focus for spending on strategic priorities” (10-K MD&A). No environmental capital program appears in the FY2016 filings.",
+  verdict:"Likely an era mismatch rather than hypocrisy — see the fiscal-year caveat below — but it means the sustainability story cannot be verified against this financial evidence."},
+ {t:"Broad international footprint vs. an active retreat to North America",badge:"choice",
+  p:"Company materials from this era still describe international scale (Australia, Asia, South America, and — as of the 2016 proxy — Europe at 15% of sales). The 20/20 Plan and FY2016 10-K disclose the UK retail sale and the divestiture of a controlling stake in Europe as core strategy, not a footnote.",
+  ev:"20/20 Plan priority: “narrowing our geographic focus to North America” (10-K Item 1A); UK retail sold Nov 2016, European controlling interest sold Feb 2017 (10-K Item 1 / Item 1A).",
+  verdict:"A disclosed, deliberate contraction — shareholders were told directly, even if the consumer-facing brand story hadn't caught up yet."},
+];
+const gl=document.getElementById("gap-list");
+gaps.forEach(g=>{
+  const badgeLabel = g.badge==="choice" ? "Positioning choice" : "Misalignment";
+  gl.insertAdjacentHTML("beforeend",
+    `<div class="gap"><h3>${g.t}<span class="badge ${g.badge}">${badgeLabel}</span></h3>
+     <p>${g.p}</p><div class="ev">${g.ev}</div><p><strong>Read:</strong> ${g.verdict}</p></div>`);
+});
+
+// ---- Sources ----
+document.getElementById("src-list").innerHTML = `
+<h3>Primary sources</h3>
+<p><strong>Form 10-K</strong>, fiscal year ended January 28, 2017 (FY2016), filed with the SEC — Item 1 (Business), Item 1A (Risk Factors), Item 7 (MD&amp;A), Note B (Restructuring Charges), Note O (Segment Reporting).</p>
+<p><strong>Schedule 14A / DEFA14A</strong>, "Spring 2016 Shareholder Engagement Presentation" — company overview, strategic plan, board and executive-compensation design (pages 3, 5, 10).</p>
+<p><strong>staples.com</strong> "About Us" and <strong>careers.staples.com</strong> — fetched live, September 2026.</p>
+<h3>Known limitations</h3>
+<div class="limit">
+<strong>Fiscal-year mismatch.</strong> The financial evidence in this tool is frozen at FY2016 (fiscal year ended January 28, 2017) — the last full year Staples operated as a public company before Sycamore Partners' 2017 buyout. The About/careers pages, by contrast, reflect the company as it exists today (2026): privately held, a different CEO, and initiatives (like the 5-year carbon plan) that may postdate the filings entirely. Any "gap" involving a current-day page should be read with that decade-plus gap in mind, not as proof of inconsistency within a single year.
+<br><br>
+<strong>Duplicate proxy filing.</strong> Both uploaded DEF 14A PDFs are the same Spring 2016 presentation, fetched at different times — this tool draws on one proxy filing, not two independent years of compensation data.
+</div>`;
+
+function buildPdf(){
+  const {jsPDF}=window.jspdf;
+  const doc=new jsPDF({unit:"pt",format:"letter"});
+  const W=612, M=54, MAXY=738;
+  let y=M;
+  function ensure(h){ if(y+h>MAXY){ doc.addPage(); y=M; } }
+  function heading(t){ ensure(30); doc.setFont("times","bold"); doc.setFontSize(15); doc.text(t,M,y); y+=20; doc.setDrawColor(200); doc.line(M,y-8,W-M,y-8); }
+  function sub(t){ ensure(18); doc.setFont("helvetica","bold"); doc.setFontSize(9); doc.text(t.toUpperCase(),M,y); y+=13; }
+  function para(t,opts={}){
+    doc.setFont(opts.bold?"times-bold":"times","normal"); doc.setFontSize(opts.size||10);
+    const lines=doc.splitTextToSize(t,W-2*M-(opts.indent||0));
+    lines.forEach(l=>{ ensure(13); doc.text(l,M+(opts.indent||0),y); y+=12.5; });
+    y+=4;
+  }
+  function srcLine(t){ doc.setFont("helvetica","italic"); doc.setFontSize(8); doc.setTextColor(110);
+    const lines=doc.splitTextToSize(t,W-2*M-14); lines.forEach(l=>{ ensure(11); doc.text(l,M+14,y); y+=10; }); doc.setTextColor(20); y+=6; }
+
+  doc.setFont("times","bold"); doc.setFontSize(19); doc.text("Staples: Competitive Advantage Pyramid",M,y); y+=18;
+  doc.setFont("helvetica","normal"); doc.setFontSize(9); doc.setTextColor(100);
+  doc.text("Stated values vs. revealed priorities — FY2016 10-K & Spring 2016 proxy",M,y); doc.setTextColor(20); y+=26;
+
+  heading("Stated Pyramid");
+  para("Built from staples.com's current About page, careers.staples.com, and the FY2016 10-K's Item 1 Strategy language.",{size:9});
+  stated.forEach(tier=>{ sub(tier.t); tier.items.forEach(it=>{ para("• ("+it.k+") "+it.x); srcLine(it.s); }); y+=4; });
+
+  doc.addPage(); y=M;
+  heading("Revealed Pyramid");
+  para("Built from behavior disclosed in the FY2016 10-K (year ended Jan 28, 2017) and the Spring 2016 proxy.",{size:9});
+  revealed.forEach(tier=>{ sub(tier.t); tier.items.forEach(it=>{ para("• ("+it.k+") "+it.x); srcLine(it.s); }); y+=4; });
+
+  doc.addPage(); y=M;
+  heading("Gap Analysis");
+  gaps.forEach(g=>{
+    sub(g.t+"  ["+(g.badge==="choice"?"Positioning choice":"Misalignment")+"]");
+    para(g.p);
+    srcLine("Evidence: "+g.ev.replace(/<[^>]+>/g,""));
+    para("Read: "+g.verdict,{indent:0});
+    y+=6;
+  });
+
+  doc.addPage(); y=M;
+  heading("Sources & Limitations");
+  para("Form 10-K, fiscal year ended January 28, 2017 (FY2016) — Item 1, Item 1A, Item 7, Note B, Note O.",{bold:true});
+  para("Schedule 14A / DEFA14A, \"Spring 2016 Shareholder Engagement Presentation\" — pages 3, 5, 10.",{bold:true});
+  para("staples.com \"About Us\" and careers.staples.com — fetched live, September 2026.",{bold:true});
+  y+=6; sub("Known limitations");
+  para("Fiscal-year mismatch: financial evidence here is frozen at FY2016, the last full year Staples operated as a public company before Sycamore Partners' 2017 buyout. The About/careers pages reflect the company as it exists today (2026) — private, different CEO, and initiatives that may postdate the filings entirely.");
+  para("Duplicate proxy filing: both uploaded DEF 14A PDFs are the same Spring 2016 presentation, fetched at different times, not two independent years of data.");
+
+  return doc.output("blob");
+}
+
+async function doDownload(){
+  const btn=document.getElementById("dlBtn"); const old=btn.textContent;
+  btn.textContent="Preparing…"; btn.disabled=true;
+  try{
+    const blob=buildPdf();
+    let downloads=null;
+    try{ downloads = window.claude ? await window.claude.use("downloads") : null; }catch(e){ downloads=null; }
+    if(downloads){
+      const res=await downloads.save({filename:"staples-competitive-advantage-pyramid.pdf", data:blob});
+      btn.textContent = res && res.status==="delivered" ? "Sent ✓" : "Saved ✓";
+    } else {
+      const url=URL.createObjectURL(blob);
+      const a=document.createElement("a"); a.href=url; a.download="staples-competitive-advantage-pyramid.pdf";
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(()=>URL.revokeObjectURL(url),4000);
+      btn.textContent="Downloaded ✓";
+    }
+  }catch(e){
+    console.error(e);
+    btn.textContent="Opening print dialog…";
+    setTimeout(()=>window.print(),300);
+  }
+  setTimeout(()=>{ btn.textContent=old; btn.disabled=false; },2500);
+}
+</script>
+</body>
+</html>
